@@ -18,12 +18,12 @@ async function getWeather() {
         document.getElementById('temperature').textContent = `Temperature: ${tempC}°C / ${tempF}°F`;
         document.getElementById('wind-speed').textContent = `Wind Speed: ${data.current.wind_kph} kph`;
         document.getElementById('humidity').textContent = `Humidity: ${data.current.humidity}%`;
-        document.getElementById('weather.jpg').src = data.current.condition.icon;
+        document.getElementById('weather-icon').src = data.current.condition.icon;
     } catch (error) {
         document.getElementById('temperature').textContent = 'Error fetching weather data';
         document.getElementById('wind-speed').textContent = '';
         document.getElementById('humidity').textContent = '';
-        document.getElementById('weather.jpg').src = '';
+        document.getElementById('weather-icon').src = 'image.jpg'; // Set to your local image if there's an error
         console.error('There has been a problem with your fetch operation:', error.message);
     }
 }
