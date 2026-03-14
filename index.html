@@ -3,23 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Skyline Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <h1>Friendly tool for your weather just add internet!</h1>
-    <div class="weather-app">
-        <h1>Weather App</h1>
-        <input type="text" id="location" placeholder="Enter your location">
-        <button onclick="getWeather()">Get Weather</button>
-        <div id="weather-info">
-            <p id="temperature"></p>
-            <p id="wind-speed"></p>
-            <p id="humidity"></p>
-            <h1>This tool is made by SPM, please capitalize the location</h1>
-            <img id="weather-icon" src="image.jpg" alt="Weather Icon">
-        </div>
-    </div>
+    <div class="bg-orb orb-one" aria-hidden="true"></div>
+    <div class="bg-orb orb-two" aria-hidden="true"></div>
+
+    <main class="app">
+        <header class="app-header">
+            <div class="brand">
+                <span class="brand-mark">Skyline</span>
+                <span class="brand-sub">Weather</span>
+            </div>
+            <p class="subtitle">A clean, fast snapshot of current conditions and a 3 day outlook.</p>
+        </header>
+
+        <section class="panel controls">
+            <form id="search-form" class="search">
+                <label for="location" class="sr-only">City, ZIP, or place</label>
+                <input type="text" id="location" placeholder="Try: Seattle, 98101, or Tokyo" autocomplete="off">
+                <button type="submit" id="search-btn">Get Weather</button>
+            </form>
+
+            <div class="control-row">
+                <button type="button" id="geo-btn" class="secondary">Use my location</button>
+                <div class="unit-toggle" role="group" aria-label="Temperature units">
+                    <span class="unit-label">Units</span>
+                    <button type="button" class="unit-btn is-active" data-unit="metric" aria-pressed="true">C</button>
+                    <button type="button" class="unit-btn" data-unit="imperial" aria-pressed="false">F</button>
+                </div>
+            </div>
+
+            <div class="chips" aria-label="Quick picks">
+                <button type="button" class="chip" data-query="New York">New York</button>
+                <button type="button" class="chip" data-query="Los Angeles">Los Angeles</button>
+                <button type="button" class="chip" data-query="Chicago">Chicago</button>
+                <button type="button" class="chip" data-query="Miami">Miami</button>
+            </div>
+
+            <div id="status" class="status" aria-live="polite"></div>
+        </section>
+
+        <section id="current" class="panel current hidden">
+            <div class="current-top">
+                <div class="current-main">
+                    <img id="condition-icon" alt="" />
+                    <div>
+                        <h2 id="location-name"></h2>
+                        <p id="local-time"></p>
+                    </div>
+                </div>
+                <div class="current-temp">
+                    <span id="temperature"></span>
+                    <span id="condition-text"></span>
+                </div>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail">
+                    <span class="label">Feels Like</span>
+                    <span id="feels-like"></span>
+                </div>
+                <div class="detail">
+                    <span class="label">Wind</span>
+                    <span id="wind-speed"></span>
+                </div>
+                <div class="detail">
+                    <span class="label">Humidity</span>
+                    <span id="humidity"></span>
+                </div>
+                <div class="detail">
+                    <span class="label">UV Index</span>
+                    <span id="uv-index"></span>
+                </div>
+                <div class="detail">
+                    <span class="label">Visibility</span>
+                    <span id="visibility"></span>
+                </div>
+                <div class="detail">
+                    <span class="label">Pressure</span>
+                    <span id="pressure"></span>
+                </div>
+                <div class="detail">
+                    <span class="label">Precip</span>
+                    <span id="precip"></span>
+                </div>
+                <div class="detail">
+                    <span class="label">Gusts</span>
+                    <span id="gusts"></span>
+                </div>
+            </div>
+
+            <div id="alerts" class="alerts hidden"></div>
+            <p class="updated" id="last-updated"></p>
+        </section>
+
+        <section id="forecast" class="panel forecast hidden">
+            <h3>3 day outlook</h3>
+            <div id="forecast-grid" class="forecast-grid"></div>
+        </section>
+    </main>
+
+    <script src="secret.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
